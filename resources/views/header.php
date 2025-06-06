@@ -7,47 +7,61 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="../images/logo/code-hoot-noir.jpg" />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+    </style>
 </head>
 <body class="bg-gray-900 text-white">
     <header class="bg-gradient-to-r from-purple-800 to-indigo-900 shadow-lg">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
-                <!-- Logo -->
                 <div class="flex items-center space-x-2">
                     <img src="../images/logo/code-hoot-noir.jpg" alt="Code'Hoot Logo" class="h-10">
                     <h1 class="text-xl font-bold pixel-font text-yellow-300">CODE'HOOT</h1>
                 </div>
-
-                <!-- Navigation -->
-                <nav class="hidden md:flex space-x-6">
+                <nav class="hidden md:flex space-x-6 items-center">
                     <a href="index.php" class="hover:text-yellow-300 transition-colors pixel-font text-sm">ACCUEIL</a>
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">JOUER</a>
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">CLASSEMENT</a>
-                    <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">DÉFIS</a>
-                    <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">À PROPOS</a>
+                    <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">DEFIS</a>
+                    <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">A PROPOS</a>
+                    <?php if (!isset($_SESSION['user'])): ?>
+                        <a href="#" class="px-3 py-1 rounded pixel-font text-xs flex items-center"><i class="fas fa-user mr-1 text-xs"></i></a>
+                    <?php endif; ?>
                 </nav>
-
-                <!-- Bouton menu mobile -->
-                <button class="md:hidden focus:outline-none">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
+                <button id="menu-toggle" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars text-yellow-300 text-xl"></i>
                 </button>
             </div>
         </div>
     </header>
-
-    <!-- Menu mobile -->
-    <div class="md:hidden hidden bg-gray-800 px-4 py-2">
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-800 px-4 py-2">
         <a href="index.php" class="block py-2 hover:text-yellow-300 pixel-font text-sm">ACCUEIL</a>
         <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">JOUER</a>
         <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">CLASSEMENT</a>
-        <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">DÉFIS</a>
-        <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">À PROPOS</a>
+        <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">DEFIS</a>
+        <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">A PROPOS</a>
         <?php if (!isset($_SESSION['user'])): ?>
-            <a href="connexion.php" class="block py-2 bg-green-600 hover:bg-green-700 px-3 py-1 rounded pixel-font text-xs text-center mt-2">CONNEXION</a>
-            <a href="inscription.php" class="block py-2 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded pixel-font text-xs text-center">INSCRIPTION</a>
+            <a href="#" class="block py-2 px-3 py-1 rounded pixel-font text-xs text-center mt-2 flex items-center justify-center"><i class="fas fa-user mr-1 text-xs"></i></a>
         <?php endif; ?>
     </div>
-    </body>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+    </script>
+</body>
 </html>
