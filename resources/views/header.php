@@ -49,5 +49,5 @@
             <a href="inscription.php" class="block py-2 bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded pixel-font text-xs text-center">INSCRIPTION</a>
         <?php endif; ?>
     </div>
-</body>
+    </body>
 </html>
