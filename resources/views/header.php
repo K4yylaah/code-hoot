@@ -29,7 +29,7 @@
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">DEFIS</a>
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">A PROPOS</a>
                     <?php if (!isset($_SESSION['user'])): ?>
-                        <a href="#" class="px-3 py-1 rounded pixel-font text-xs flex items-center"><i class="fas fa-user mr-1 text-xs"></i></a>
+                        <a href="login.php" class="px-3 py-1 rounded pixel-font text-xs flex items-center"><i class="fas fa-user mr-1 text-xs"></i></a>
                     <?php endif; ?>
                 </nav>
                 <button id="menu-toggle" class="md:hidden focus:outline-none">
