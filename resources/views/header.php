@@ -31,6 +31,9 @@
                     <?php if (!isset($_SESSION['user'])): ?>
                         <a href="login.php" class="px-3 py-1 rounded pixel-font text-xs flex items-center"><i class="fas fa-user mr-1 text-xs"></i></a>
                     <?php endif; ?>
+                    <?php if (!isset($_SESSION['user'])): ?>
+                        <a href="account.php" class="px-3 py-1 rounded pixel-font text-xs flex items-center"><i class="fas fa-user mr-1 text-xs"></i></a>
+                    <?php endif; ?>
                 </nav>
                 <button id="menu-toggle" class="md:hidden focus:outline-none">
                     <i class="fas fa-bars text-yellow-300 text-xl"></i>
