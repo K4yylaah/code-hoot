@@ -24,7 +24,7 @@
                 </div>
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="index.php" class="hover:text-yellow-300 transition-colors pixel-font text-sm">ACCUEIL</a>
-                    <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">JOUER</a>
+                    <a href="list.php" class="hover:text-yellow-300 transition-colors pixel-font text-sm">JOUER</a>
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">CLASSEMENT</a>
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">DEFIS</a>
                     <a href="#" class="hover:text-yellow-300 transition-colors pixel-font text-sm">A PROPOS</a>
@@ -43,12 +43,15 @@
     </header>
     <div id="mobile-menu" class="md:hidden hidden bg-gray-800 px-4 py-2">
         <a href="index.php" class="block py-2 hover:text-yellow-300 pixel-font text-sm">ACCUEIL</a>
-        <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">JOUER</a>
+        <a href="list.php" class="block py-2 hover:text-yellow-300 pixel-font text-sm">JOUER</a>
         <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">CLASSEMENT</a>
         <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">DEFIS</a>
         <a href="#" class="block py-2 hover:text-yellow-300 pixel-font text-sm">A PROPOS</a>
         <?php if (!isset($_SESSION['user'])): ?>
-            <a href="#" class="block py-2 px-3 py-1 rounded pixel-font text-xs text-center mt-2 flex items-center justify-center"><i class="fas fa-user mr-1 text-xs"></i></a>
+            <a href="login.php" class="block py-2 px-3 py-1 rounded pixel-font text-xs text-center mt-2 flex items-center justify-center"><i class="fas fa-user mr-1 text-xs"></i></a>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION['user'])): ?>
+            <a href="account.php" class="block py-2 px-3 py-1 rounded pixel-font text-xs text-center mt-2 flex items-center justify-center"><i class="fas fa-user mr-1 text-xs"></i></a>
         <?php endif; ?>
     </div>
 
