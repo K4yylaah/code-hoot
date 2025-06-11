@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="game.php" class="w-full sm:w-auto flex-1 px-6 py-3 bg-kahoot-yellow text-gray-900 rounded-lg font-bold pixel-font hover:bg-yellow-400 transition-colors text-center">COMMENCER LE QUIZ</a>
+                            <a href="<?php echo url('/game'); ?>" class="w-full sm:w-auto flex-1 px-6 py-3 bg-kahoot-yellow text-gray-900 rounded-lg font-bold pixel-font hover:bg-yellow-400 transition-colors text-center">COMMENCER LE QUIZ</a>
                             <a class="w-full sm:w-auto px-6 py-3 bg-gray-700 text-kahoot-pink rounded-lg font-bold pixel-font hover:bg-gray-600 transition-colors text-center flex items-center justify-center gap-2">FAVORIS</a>
                         </div>
                     </div>

@@ -8,7 +8,8 @@ require_once "header.php";
             <div class="p-8">
                 <h2 class="text-3xl font-bold text-center mb-8 gradient-text lucky-font">CONNEXION</h2>
 
-                <form action="login_process.php" method="POST" class="space-y-6">
+                <form action="<?php echo url('/login'); ?>" method="POST" class="space-y-6">
+                    <?php echo csrf_field(); ?>
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">EMAIL</label>
                         <input type="email" id="email" name="email" required
@@ -25,7 +26,7 @@ require_once "header.php";
 
                     <div class="flex items-center justify-between">
                         <div class="text-sm">
-                            <a href="forgot_password.php" class="font-medium text-kahoot-yellow hover:text-kahoot-pink pixel-font">MOT DE PASSE OUBLIÉ ?</a>
+                            <a href="<?php echo url('/forgot-password'); ?>" class="font-medium text-kahoot-yellow hover:text-kahoot-pink pixel-font">MOT DE PASSE OUBLIÉ ?</a>
                         </div>
                     </div>
                     <div>
@@ -38,7 +39,7 @@ require_once "header.php";
                 <div class="mt-6 text-center">
                     <p class="text-sm text-gray-400 pixel-font">
                         PAS ENCORE DE COMPTE ?
-                        <a href="register.php" class="font-medium text-kahoot-green hover:text-kahoot-pink">
+                        <a href="<?php echo url('/register'); ?>" class="font-medium text-kahoot-green hover:text-kahoot-pink">
                             INSCRIVEZ-VOUS
                         </a>
                     </p>
