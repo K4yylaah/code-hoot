@@ -45,3 +45,7 @@ Route::get('/account', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+Route::get('/result', function () {
+    return view('result');
+})->name('result');
