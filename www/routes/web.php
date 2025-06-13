@@ -1,0 +1,51 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('index');
+});
+
+Route::get('/play', function () {
+    return view('list');
+})->name('play');
+
+Route::get('/game', function () {
+    return view('game');
+})->name('game');
+
+Route::get('/leaderboard', function () {
+    return view('leaderboard');
+})->name('leaderboard');
+
+Route::get('/challenges', function () {
+    return view('challenges');
+})->name('challenges');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
+
+Route::get('/forgot-password', function () {
+    return view('forgot-password');
+})->name('password.request');
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::get('/account', function () {
+    return view('account');
+})->name('account');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::get('/result', function () {
+    return view('result');
+})->name('result');
