@@ -1,4 +1,4 @@
-<?php require_once "header.php"; ?>
+@include('header')
 
 <main class="flex flex-col items-center py-12 px-4 min-h-screen bg-gray-900">
   <div class="container mx-auto px-4 max-w-4xl">
@@ -177,4 +177,4 @@
   </div>
 </main>
 
-<?php require_once "footer.php"; ?>
+@include('footer')
