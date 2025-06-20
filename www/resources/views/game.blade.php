@@ -1,4 +1,5 @@
-<?php require_once "header.php"; ?>
+@include('header')
+
 <div id="gameContainer" class="bg-gray-800 rounded-xl shadow-xl overflow-hidden border-2 border-gray-700">
     <div class="p-8">
         <div id="quizContent">
@@ -83,4 +84,5 @@
         </div>
     </div>
 </div>
-<?php require_once "footer.php"; ?>
+
+@include('footer')

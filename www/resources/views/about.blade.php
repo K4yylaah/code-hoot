@@ -1,6 +1,4 @@
-<?php
-require_once "header.php";
-?>
+@include('header')
 
 <main class="flex flex-col items-center py-12 px-4 min-h-[calc(100vh-120px)] bg-gray-900">
     <div class="w-full max-w-4xl">
@@ -50,6 +48,5 @@ require_once "header.php";
     </div>
 </main>
 
-<?php
-require_once "footer.php";
-?>
+
+@include('footer')
