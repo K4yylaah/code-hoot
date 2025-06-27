@@ -7,10 +7,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('/play', function () {
-    return view('list');
-})->name('play');
-
 Route::get('/game', function () {
     return view('game');
 })->name('game');
@@ -47,8 +43,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
 Route::get('/quiz/create', [QuizController::class, 'create'])->name('quiz.create');
-Route::post('/quiz/store', [QuizController::class, 'store'])->name('quiz.store');
+Route::post('/quiz', [QuizController::class, 'store'])->name('quiz.store');
+Route::get('/quiz/{quiz}', [QuizController::class, 'show'])->name('quiz.show');
 
 Route::get('/result', function () {
     return view('result');

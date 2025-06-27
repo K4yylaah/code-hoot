@@ -15,6 +15,11 @@ class Quiz extends Model
         'catégorie',
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     public function questions()
     {
         return $this->hasMany(Question::class);

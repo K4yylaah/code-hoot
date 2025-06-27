@@ -10,6 +10,32 @@ use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
+    public function index()
+    {
+        $quizzes = Quiz::with(['questions', 'questions.reponses'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10); // 10 quiz par page
+            
+        return view('quiz.index', compact('quizzes'));
+    }
+
+    public function home()
+    {
+        $quizzes = Quiz::with(['questions', 'questions.reponses'])
+            ->latest()
+            ->take(6)
+            ->get();
+            
+        return view('home', compact('quizzes'));
+    }
+
+    public function show($id)
+    {
+        $quiz = Quiz::with(['questions.reponses'])->findOrFail($id);
+        return view('quiz.show', compact('quiz'));
+    }
+
+
     public function create()
     {
         return view('createquiz');
@@ -17,7 +43,6 @@ class QuizController extends Controller
 
     public function store(Request $request)
     {
-        // Validation
         $validatedData = $request->validate([
             'nombre_de_questions' => 'required|integer|min:1|max:20',
             'difficulté' => 'required|string|in:facile,moyen,difficile',
@@ -32,22 +57,18 @@ class QuizController extends Controller
         try {
             DB::beginTransaction();
 
-            // Créer le quiz
             $quiz = Quiz::create([
                 'nombre_de_questions' => $validatedData['nombre_de_questions'],
                 'difficulté' => $validatedData['difficulté'],
                 'catégorie' => $validatedData['catégorie'],
             ]);
 
-            // Créer les questions et réponses
             foreach ($validatedData['questions'] as $questionData) {
-                // Créer la question
                 $question = Question::create([
                     'énoncé' => $questionData['texte'],
                     'quiz_id' => $quiz->id,
                 ]);
 
-                // Créer les 4 réponses
                 foreach ($questionData['reponses'] as $index => $reponseTexte) {
                     Reponse::create([
                         'contenu' => $reponseTexte,
@@ -64,7 +85,6 @@ class QuizController extends Controller
         } catch (\Exception $e) {
             DB::rollback();
             
-            // Pour déboguer, afficher l'erreur
             return redirect()->back()
                 ->withInput()
                 ->with('error', 'Erreur lors de la création du quiz: ' . $e->getMessage());
