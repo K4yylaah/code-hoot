@@ -31,15 +31,6 @@ class CreateTables extends Migration
             $table->timestamps();
         });
 
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('pseudo');
-            $table->timestamp('created_at')->useCurrent();
-            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-        });
-
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
             $table->integer('score');
@@ -56,6 +47,5 @@ class CreateTables extends Migration
         Schema::dropIfExists('reponses');
         Schema::dropIfExists('questions');
         Schema::dropIfExists('quizzes');
-        Schema::dropIfExists('users');
     }
 }
