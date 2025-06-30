@@ -1,6 +1,4 @@
-<?php
-require_once "header.php";
-?>
+@include('header')
 
 <main class="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] py-12 px-4">
     <div class="w-full max-w-md">
@@ -20,7 +18,7 @@ require_once "header.php";
                         <label for="email" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">EMAIL</label>
                         <input type="email" id="email" name="email" required
                                class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-kahoot-yellow focus:ring-2 focus:ring-kahoot-yellow focus:outline-none text-white"
-                               placeholder="votre@email.com">
+                               placeholder="email@edu.esiee-it.fr">
                     </div>
 
                     <div>
@@ -65,6 +63,5 @@ require_once "header.php";
     </div>
 </main>
 
-<?php
-require_once "footer.php";
-?>
+
+@include('footer')

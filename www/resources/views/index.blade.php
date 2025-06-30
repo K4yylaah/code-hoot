@@ -1,6 +1,4 @@
-<?php
-require_once "header.php";
-?>
+@include('header')
 <section class="py-12 bg-gradient-to-b from-gray-900 to-gray-800">
     <div class="container mx-auto px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-6 pixel-font text-yellow-300">CREEZ DES QUIZ SANS LIMITES</h1>
@@ -120,6 +118,5 @@ require_once "header.php";
     </div>
 </section>
 
-<?php
-require_once "footer.php";
-?>
+
+@include('footer')

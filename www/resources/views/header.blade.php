@@ -24,7 +24,7 @@
                 </div>
                 <nav class="hidden md:flex space-x-6 items-center">
                     <a href="<?php echo url('/'); ?>" class="hover:text-yellow-300 transition-colors pixel-font text-sm">ACCUEIL</a>
-                    <a href="<?php echo url('/play'); ?>" class="hover:text-yellow-300 transition-colors pixel-font text-sm">JOUER</a>
+                    <a href="<?php echo url('/quiz'); ?>" class="hover:text-yellow-300 transition-colors pixel-font text-sm">JOUER</a>
                     <a href="<?php echo url('/leaderboard'); ?>" class="hover:text-yellow-300 transition-colors pixel-font text-sm">CLASSEMENT</a>
                     <a href="<?php echo url('/challenges'); ?>" class="hover:text-yellow-300 transition-colors pixel-font text-sm">DEFIS</a>
                     <a href="<?php echo url('/about'); ?>" class="hover:text-yellow-300 transition-colors pixel-font text-sm">A PROPOS</a>
