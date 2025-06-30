@@ -90,4 +90,16 @@ class QuizController extends Controller
                 ->with('error', 'Erreur lors de la création du quiz: ' . $e->getMessage());
         }
     }
+    public function play($id)
+    {
+        $quiz = Quiz::with(['questions.reponses'])->findOrFail($id);
+
+        // On mélange les questions et les réponses
+        $quiz->questions->each(function ($question) {
+            $question->reponses = $question->reponses->shuffle();
+        });
+
+        return view('quiz.play', compact('quiz'));
+    }
+
 }
