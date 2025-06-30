@@ -29,9 +29,9 @@
         <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
             <p>© <?php echo date('Y'); ?> Code'Hoot. Tous droits réservés.</p>
             <div class="flex space-x-4 mt-4 md:mt-0">
-                <a href="#" class="hover:text-yellow-300">Mentions légales</a>
-                <a href="#" class="hover:text-yellow-300">Confidentialité</a>
-                <a href="#" class="hover:text-yellow-300">CGU</a>
+                <a href="<?php echo url('Mentions-legales'); ?>" class="hover:text-yellow-300">Mentions légales</a>
+                <a href="<?php echo url('confidentialite'); ?>" class="hover:text-yellow-300">Confidentialité</a>
+                <a href="<?php echo url('cgu'); ?>" class="hover:text-yellow-300">CGU</a>
             </div>
         </div>
     </div>

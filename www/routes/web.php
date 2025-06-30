@@ -49,3 +49,15 @@ Route::get('/quiz/play/{quiz}', [QuizController::class, 'play'])->name('game');
 Route::get('/result', function () {
     return view('result');
 })->name('result');
+
+Route::get('/Mentions-legales', function () {
+    return view('Mentions-legales');
+})->name('Mentions-legales');
+
+Route::get('/confidentialite', function () {
+    return view('confidentialite');
+})->name('confidentialite');
+
+Route::get('/cgu', function () {
+    return view('cgu');
+})->name('cgu');
