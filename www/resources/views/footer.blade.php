@@ -19,8 +19,8 @@
             <div>
                 <h3 class="text-yellow-300 pixel-font text-lg mb-4">CONTACT</h3>
                 <address class="not-italic text-sm">
-                    <p>Email: contact@codehoot.com</p>
-                    <p>Support: support@codehoot.com</p>
+                    <p>Email: codehoot@alwaysdata.net</p>
+                    <p>Support: codehoot@alwaysdata.net</p>
                 </address>
             </div>
         </div>

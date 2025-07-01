@@ -42,7 +42,7 @@
     </header>
     <div id="mobile-menu" class="md:hidden hidden bg-gray-800 px-4 py-2">
         <a href="<?php echo url('/'); ?>" class="block py-2 hover:text-yellow-300 pixel-font text-sm">ACCUEIL</a>
-        <a href="<?php echo url('/play'); ?>" class="block py-2 hover:text-yellow-300 pixel-font text-sm">JOUER</a>
+        <a href="<?php echo url('/quiz'); ?>" class="block py-2 hover:text-yellow-300 pixel-font text-sm">JOUER</a>
         <a href="<?php echo url('/leaderboard'); ?>" class="block py-2 hover:text-yellow-300 pixel-font text-sm">CLASSEMENT</a>
         <a href="<?php echo url('/challenges'); ?>" class="block py-2 hover:text-yellow-300 pixel-font text-sm">DEFIS</a>
         <a href="<?php echo url('/about'); ?>" class="block py-2 hover:text-yellow-300 pixel-font text-sm">A PROPOS</a>
