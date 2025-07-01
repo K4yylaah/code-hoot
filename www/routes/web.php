@@ -2,14 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
+use App\Http\Controllers\LeaderboardController;
 
 Route::get('/', function () {
     return view('index');
 });
-
-Route::get('/leaderboard', function () {
-    return view('leaderboard');
-})->name('leaderboard');
 
 Route::get('/challenges', function () {
     return view('challenges');
@@ -45,6 +42,8 @@ Route::post('/quiz', [QuizController::class, 'store'])->name('quiz.store');
 Route::get('/quiz/{quiz}', [QuizController::class, 'show'])->name('quiz.show');
 Route::get('/quiz/play/{quiz}', [QuizController::class, 'play'])->name('game');
 
+
+Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
 
 Route::get('/result', function () {
     return view('result');
