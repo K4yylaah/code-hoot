@@ -1,30 +1,31 @@
 @include('header')
 
-<main class="flex flex-col items-center py-12 px-4 min-h-[calc(100vh-120px)] bg-gray-900">
-    <div class="w-full max-w-4xl">
-        <div class="bg-gray-800 rounded-lg shadow-2xl p-8">
-            <div class="text-center mb-8">
-                <h1 class="text-4xl font-bold text-white mb-4">
-                    <i class="fas fa-trophy text-yellow-500 mr-3"></i>
-                    Classement des Joueurs
-                </h1>
-                <p class="text-gray-400 text-lg">Découvrez les meilleurs joueurs de CodeHoot</p>
-            </div>
+<section class="py-12 bg-gradient-to-b from-gray-900 to-gray-800">
+    <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 pixel-font text-yellow-300">CLASSEMENT DES JOUEURS</h1>
+        <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
+            Découvrez les meilleurs joueurs de CodeHoot et consultez leurs performances par période.
+        </p>
+    </div>
+</section>
 
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <div class="bg-gray-800 rounded-lg shadow-lg p-8">
             <!-- Filtres temporels -->
             <div class="flex justify-center mb-8">
                 <div class="bg-gray-700 rounded-lg p-1 flex space-x-1">
                     <a href="/leaderboard?filter=week" 
-                       class="px-6 py-2 rounded-md transition-all {{ $filter === 'week' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white hover:bg-gray-600' }}">
-                        Cette semaine
+                       class="px-6 py-2 rounded-md transition-all pixel-font text-sm {{ $filter === 'week' ? 'bg-yellow-500 text-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-600' }}">
+                        CETTE SEMAINE
                     </a>
                     <a href="/leaderboard?filter=month" 
-                       class="px-6 py-2 rounded-md transition-all {{ $filter === 'month' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white hover:bg-gray-600' }}">
-                        Ce mois
+                       class="px-6 py-2 rounded-md transition-all pixel-font text-sm {{ $filter === 'month' ? 'bg-yellow-500 text-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-600' }}">
+                        CE MOIS
                     </a>
                     <a href="/leaderboard?filter=all" 
-                       class="px-6 py-2 rounded-md transition-all {{ $filter === 'all' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:text-white hover:bg-gray-600' }}">
-                        Tous les temps
+                       class="px-6 py-2 rounded-md transition-all pixel-font text-sm {{ $filter === 'all' ? 'bg-yellow-500 text-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-600' }}">
+                        TOUS LES TEMPS
                     </a>
                 </div>
             </div>
@@ -34,11 +35,11 @@
                 <table class="w-full text-white">
                     <thead class="bg-gray-700 border-b border-gray-600">
                         <tr>
-                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wider">Rang</th>
-                            <th class="px-6 py-4 text-left text-sm font-semibold text-gray-300 uppercase tracking-wider">Joueur</th>
-                            <th class="px-6 py-4 text-center text-sm font-semibold text-gray-300 uppercase tracking-wider">Score Total</th>
-                            <th class="px-6 py-4 text-center text-sm font-semibold text-gray-300 uppercase tracking-wider">Quiz Complétés</th>
-                            <th class="px-6 py-4 text-center text-sm font-semibold text-gray-300 uppercase tracking-wider">Moyenne</th>
+                            <th class="px-6 py-4 text-left pixel-font text-yellow-300 text-sm">RANG</th>
+                            <th class="px-6 py-4 text-left pixel-font text-yellow-300 text-sm">JOUEUR</th>
+                            <th class="px-6 py-4 text-center pixel-font text-yellow-300 text-sm">SCORE TOTAL</th>
+                            <th class="px-6 py-4 text-center pixel-font text-yellow-300 text-sm">QUIZ COMPLéTéS</th>
+                            <th class="px-6 py-4 text-center pixel-font text-yellow-300 text-sm">MOYENNE</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-600">
@@ -51,57 +52,58 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         @if($index === 0)
-                                            <i class="fas fa-crown text-yellow-500 text-xl mr-2"></i>
+                                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gray-900 font-bold">👑</span>
+                                            </div>
                                         @elseif($index === 1)
-                                            <i class="fas fa-medal text-gray-400 text-xl mr-2"></i>
+                                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gray-900 font-bold">🥈</span>
+                                            </div>
                                         @elseif($index === 2)
-                                            <i class="fas fa-medal text-amber-600 text-xl mr-2"></i>
+                                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gray-900 font-bold">🥉</span>
+                                            </div>
                                         @else
-                                            <span class="w-6 h-6 flex items-center justify-center text-gray-400 font-semibold mr-2">
-                                                {{ $index + 1 }}
-                                            </span>
+                                            <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                                <span class="text-gray-900 font-bold">{{ $index + 1 }}</span>
+                                            </div>
                                         @endif
                                     </div>
                                 </td>
                                 
                                 <td class="px-6 py-4">
-                                    <div class="flex items-center">
-                                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3">
-                                            {{ substr($user->user_name, 0, 2) }}
-                                        </div>
-                                        <span class="font-semibold text-lg">{{ $user->user_name }}</span>
-                                    </div>
+                                    <span class="font-semibold text-lg">{{ $user->user_name }}</span>
                                 </td>
                                 
                                 <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-green-600/20 text-green-400 font-bold">
-                                        <i class="fas fa-star mr-1"></i>
-                                        {{ number_format($user->total_score) }}
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300 font-bold pixel-font text-sm">
+                                        ⭐ {{ number_format($user->total_score) }}
                                     </span>
                                 </td>
                                 
                                 <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-600/20 text-blue-400 font-semibold">
-                                        <i class="fas fa-tasks mr-1"></i>
-                                        {{ $user->quiz_completed }}
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full bg-yellow-500/20 text-yellow-300 font-bold pixel-font text-sm">
+                                        📋 {{ $user->quiz_completed }}
                                     </span>
                                 </td>
                                 
                                 <td class="px-6 py-4 text-center">
                                     <div class="flex items-center justify-center">
                                         <div class="w-16 h-2 bg-gray-600 rounded-full mr-2">
-                                            <div class="h-2 bg-gradient-to-r from-green-500 to-blue-500 rounded-full" 
+                                            <div class="h-2 bg-yellow-500 rounded-full" 
                                                  style="width: {{ min($user->average, 100) }}%"></div>
                                         </div>
-                                        <span class="font-semibold text-white">{{ $user->average }}%</span>
+                                        <span class="font-semibold text-yellow-300 pixel-font text-sm">{{ $user->average }}%</span>
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="5" class="px-6 py-8 text-center text-gray-400">
-                                    <i class="fas fa-trophy text-4xl mb-4"></i>
-                                    <p class="text-lg">Aucun joueur trouvé pour cette période</p>
+                                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <span class="text-gray-900 font-bold text-2xl">🏆</span>
+                                    </div>
+                                    <p class="text-lg pixel-font text-yellow-300">AUCUN JOUEUR TROUVÉ POUR CETTE PÉRIODE</p>
                                 </td>
                             </tr>
                         @endforelse
@@ -110,6 +112,6 @@
             </div>
         </div>
     </div>
-</main>
+</section>
 
 @include('footer')
