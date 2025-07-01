@@ -6,9 +6,7 @@
             Une plateforme complète pour creer, partager et animer des quiz interactifs avec import/export CSV, gestion d'equipes et bien plus encore.
         </p>
         <div class="flex justify-center space-x-4">
-            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">COMMENCER</a>
-            <a href="#" class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">DECOUVRIR</a>
-        </div>
+            <a href="<?php echo url('/quiz/create'); ?>" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">COMMENCER</a>        </div>
     </div>
 </section>
 <section class="py-12">
@@ -102,18 +100,6 @@
                 <h3 class="text-xl font-bold mb-2 pixel-font text-yellow-300">LANCER LA SESSION</h3>
                 <p>Animez votre quiz en temps reel et consultez les resultats instantanement.</p>
             </div>
-        </div>
-    </div>
-</section>
-<section class="py-12 bg-gradient-to-r from-purple-800 to-indigo-900">
-    <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl font-bold mb-6 pixel-font text-yellow-300">PRET A COMMENCER ?</h2>
-        <p class="text-lg mb-8 max-w-2xl mx-auto">
-            Creez votre premier quiz en quelques minutes et offrez une experience interactive à vos participants.
-        </p>
-        <div class="flex justify-center space-x-4">
-            <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">CREER UN QUIZ</a>
-            <a href="#" class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">EN SAVOIR PLUS</a>
         </div>
     </div>
 </section>
