@@ -6,10 +6,20 @@
             <div class="p-8">
                 <h2 class="text-3xl font-bold text-center mb-8 gradient-text lucky-font">INSCRIPTION</h2>
 
-                <form action="register_process.php" method="POST" class="space-y-6">
+                <form action="{{ route('register.process') }}" method="POST" class="space-y-6">
+                    @csrf
+                    @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div>
-                        <label for="username" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">NOM D'UTILISATEUR</label>
-                        <input type="text" id="username" name="username" required
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">NOM D'UTILISATEUR</label>
+                        <input type="text" id="name" name="name" required
                                class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-kahoot-yellow focus:ring-2 focus:ring-kahoot-yellow focus:outline-none text-white"
                                placeholder="Votre pseudo">
                     </div>
@@ -29,8 +39,8 @@
                     </div>
 
                     <div>
-                        <label for="confirm_password" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">CONFIRMER MOT DE PASSE</label>
-                        <input type="password" id="confirm_password" name="confirm_password" required
+                        <label for="password_confirmation" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">CONFIRMER MOT DE PASSE</label>
+                        <input type="password" id="password_confirmation" name="password_confirmation" required
                                class="w-full px-4 py-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-kahoot-yellow focus:ring-2 focus:ring-kahoot-yellow focus:outline-none text-white"
                                placeholder="••••••••">
                     </div>
