@@ -13,12 +13,18 @@ class Quiz extends Model
         'nombre_de_questions',
         'difficulté',
         'catégorie',
+        'user_id',
     ];
 
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function questions()
     {

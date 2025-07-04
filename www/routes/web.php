@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\LeaderboardController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccountController;
 
 Route::get('/', function () {
     return view('index');
@@ -28,9 +30,19 @@ Route::get('/register', function () {
     return view('register');
 })->name('register');
 
-Route::get('/account', function () {
-    return view('account');
-})->name('account');
+Route::post('/register', [AuthController::class, 'register'])->name('register.process');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/verify', [AuthController::class, 'showVerifyOtpForm'])->name('verify.show');
+Route::post('/verify', [AuthController::class, 'verifyOtp'])->name('verify.otp');
+
+// Routes protégées par l'authentification
+Route::middleware('auth')->group(function () {
+    Route::get('/account', [AccountController::class, 'show'])->name('account.show');
+    Route::get('/account/edit', [AccountController::class, 'edit'])->name('account.edit');
+    Route::put('/account', [AccountController::class, 'update'])->name('account.update');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -60,3 +72,5 @@ Route::get('/confidentialite', function () {
 Route::get('/cgu', function () {
     return view('cgu');
 })->name('cgu');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

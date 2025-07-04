@@ -6,8 +6,18 @@
             <div class="p-8">
                 <h2 class="text-3xl font-bold text-center mb-8 gradient-text lucky-font">CONNEXION</h2>
 
-                <form action="<?php echo url('/login'); ?>" method="POST" class="space-y-6">
-                    <?php echo csrf_field(); ?>
+                @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="pixel-font text-xs">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('login.process') }}" method="POST" class="space-y-6">
+                    @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium text-gray-300 mb-2 pixel-font">EMAIL</label>
                         <input type="email" id="email" name="email" required
