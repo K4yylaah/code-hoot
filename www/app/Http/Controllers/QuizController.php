@@ -236,4 +236,89 @@ class QuizController extends Controller
 
         return response()->stream($callback, 200, $headers);
     }
+
+    public function edit($id)
+    {
+        $quiz = Quiz::with(['questions.reponses'])->findOrFail($id);
+        return view('quiz.edit', compact('quiz'));
+    }
+
+    public function update(Request $request, $id){
+        $validatedData = $request->validate([
+            'nombre_de_questions' => 'required|integer|min:1|max:20',
+            'difficulté' => 'required|string|in:facile,moyen,difficile',
+            'catégorie' => 'required|string|in:culture,programmation',
+            'questions' => 'required|array',
+            'questions.*.texte' => 'required|string|max:1000',
+            'questions.*.correct' => 'required|integer|min:0|max:3',
+            'questions.*.reponses' => 'required|array|size:4',
+            'questions.*.reponses.*' => 'required|string|max:255',
+        ]);
+
+        try {
+            DB::beginTransaction();
+
+            $quiz = Quiz::findOrFail($id);
+            $quiz->update([
+                'nombre_de_questions' => $validatedData['nombre_de_questions'],
+                'difficulté' => $validatedData['difficulté'],
+                'catégorie' => $validatedData['catégorie'],
+            ]);
+
+            // Supprime toutes les anciennes questions ét réponses
+            foreach ($quiz->questions as $question) {
+                $question->reponses()->delete();
+            }
+            $quiz->questions()->delete();
+
+            // Crée les nouvelles questions et réponses
+            foreach ($validatedData['questions'] as $questionData) {
+                $question = Question::create([
+                    'énoncé' => $questionData['texte'],
+                    'quiz_id' => $quiz->id,
+                ]);
+
+                foreach ($questionData['reponses'] as $index => $reponseTexte) {
+                    reponse::create([
+                        'contenu' => $reponseTexte,
+                        'est_correcte' => ($index == $questionData['correct']),
+                        'question_id' => $question->id,
+                    ]);
+                }
+            }
+
+            DB::commit();
+
+            return redirect()->route('quiz.index')->with('success', 'Quiz modifié avec succès!');
+        }
+        catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Erreur lors de la modification du quiz: ' . $e->getMessage());
+        }
+    }
+    public function destroy($id){
+        try {
+            $quiz = Quiz::findOrFail($id);
+
+            DB::beginTransaction();
+
+            // Supprime d'abord toutes les réponses et questions associées
+            foreach ($quiz->questions as $question) {
+                $question->reponses()->delete();
+            }
+            $quiz->questions()->delete();
+            $quiz->delete();
+            DB::commit();
+
+            return redirect()->route('quiz.index')
+                ->with('success', "Quiz supprimé avec succès !");
+        }
+        catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()
+                ->with('error', 'Erreur lors de la suppression du quiz: ' . $e->getMessage());
+        }
+    }
 }

@@ -26,15 +26,47 @@
                                 <h1 class="text-3xl font-bold text-white lucky-font">
                                     Quiz {{ ucfirst($quiz->catégorie) }}
                                 </h1>
-                                <a href="{{ route('quiz.export', ['quiz' => $quiz->id]) }}"
-                                   class="bg-transparent hover:bg-gray-700 border-2 border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">
-                                    EXPORTER
-                                </a>
+                                <div class="flex flex-col space-y-2">
+                                    <a href="{{ route('quiz.export', ['quiz' => $quiz->id]) }}"
+                                       class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors text-center">
+                                        EXPORTER
+                                    </a>
+                                    <a href="{{ route('quiz.edit', $quiz->id) }}"
+                                       class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors text-center">
+                                        MODIFIER
+                                    </a>
+                                    <button type="button"
+                                            onclick="openDeleteModal({{ $quiz->id }})"
+                                            class="w-full bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors text-center">
+                                        SUPPRIMER
+                                    </button>
+                                </div>
                             </div>
                             <p class="text-gray-300">
                                 Testez vos connaissances en {{ $quiz->catégorie }} avec ce quiz de
                                 {{ $quiz->nombre_de_questions }} questions.
                             </p>
+                        </div>
+
+                        <div id="deleteModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 hidden items-center justify-center z-50">
+                            <div class="bg-gray-800 rounded-lg p-6 max-w-sm mx-4 border-2 border-yellow-500">
+                                <h3 class="text-xl font-bold text-white mb-4 pixel-font">Confirmation de suppression</h3>
+                                <p class="text-gray-300 mb-6">Êtes-vous sûr de vouloir supprimer ce quiz ? Cette action est irréversible.</p>
+                                <div class="flex justify-end space-x-3">
+                                    <button onclick="closeDeleteModal()"
+                                            class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-2 px-4 rounded-lg pixel-font text-sm transition-colors">
+                                        ANNULER
+                                    </button>
+                                    <form id="deleteForm" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg pixel-font text-sm transition-colors">
+                                            CONFIRMER
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="flex flex-wrap gap-3">
@@ -96,6 +128,45 @@ function toggleFavorite(quizId) {
     console.log('Toggle favorite for quiz:', quizId);
     // Ici vous pouvez ajouter une requête AJAX pour gérer les favoris
 }
+
+function openDeleteModal(quizId) {
+    const modal = document.getElementById('deleteModal');
+    const deleteForm = document.getElementById('deleteForm');
+
+    // Mettre à jour l'action du formulaire avec l'ID du quiz
+    deleteForm.action = `/quiz/${quizId}`;
+
+    // Afficher la modal
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+
+    // Empêcher le défilement de la page
+    document.body.style.overflow = 'hidden';
+}
+
+function closeDeleteModal() {
+    const modal = document.getElementById('deleteModal');
+
+    // Cacher la modal
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+
+    // Réactiver le défilement de la page
+    document.body.style.overflow = 'auto';
+}
+
+// Fermer la modal si on clique en dehors
+document.getElementById('deleteModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+        closeDeleteModal();
+    }
+});
+
+// Empêcher la fermeture quand on clique sur le contenu de la modal
+document.querySelector('#deleteModal > div').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
+
 </script>
 
 @include('footer')

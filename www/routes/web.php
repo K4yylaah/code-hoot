@@ -46,6 +46,9 @@ Route::get('/quiz/create', [QuizController::class, 'create'])->name('quiz.create
 Route::post('/quiz', [QuizController::class, 'store'])->name('quiz.store');
 Route::get('/quiz/{quiz}', [QuizController::class, 'show'])->name('quiz.show');
 Route::get('/quiz/play/{quiz}', [QuizController::class, 'play'])->name('game');
+Route::get('/quiz/{quiz}/edit', [QuizController::class, 'edit'])->name('quiz.edit');
+Route::put('/quiz/{quiz}', [QuizController::class, 'update'])->name('quiz.update');
+Route::delete('/quiz/{quiz}', [QuizController::class, 'destroy'])->name('quiz.destroy');
 
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
 
