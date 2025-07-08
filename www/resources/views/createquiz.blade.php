@@ -3,8 +3,14 @@
 <main class="flex flex-col py-12 px-4 min-h-screen bg-gray-900">
     <div class="container mx-auto px-4">
         <div class="mb-12">
-            <h1 class="text-4xl font-bold text-white mb-2 gradient-text lucky-font">Créer un Nouveau Quiz</h1>
-            <p class="text-gray-300">Créez et configurez votre nouveau quiz ici</p>
+            <div class="flex justify-between items-start">
+                <div>
+                    <h1 class="text-4xl font-bold text-white mb-2 gradient-text lucky-font">Créer un Nouveau Quiz</h1>
+                    <p class="text-gray-300">Créez et configurez votre nouveau quiz ici</p>
+                </div>
+                <a href="{{ route('quiz.showImport') }}" class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">
+                    IMPORTER</a>
+            </div>
         </div>
 
         @if(session('success'))
@@ -22,7 +28,7 @@
         <form action="{{ route('quiz.store') }}" method="POST"
             class="bg-gray-800 p-6 rounded-xl border-2 border-gray-700 shadow-lg">
             @csrf
-            
+
             <!-- Configuration du quiz -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div>
@@ -65,7 +71,7 @@
             <!-- Section des questions -->
             <div id="questions-container" class="mb-8">
                 <h2 class="text-2xl font-bold text-white mb-6 gradient-text">Questions et Réponses</h2>
-                
+
                 <!-- Les questions seront générées ici par JavaScript -->
             </div>
 
@@ -86,28 +92,28 @@ function generateQuestions() {
     const nombreQuestions = document.getElementById('nombre_de_questions').value;
     const container = document.getElementById('questions-container');
     const oldData = @json(old('questions', []));
-    
+
     // Gardez le titre
     const titre = container.querySelector('h2');
-    
+
     // Effacer les questions existantes
     const existingQuestions = container.querySelectorAll('.question-block');
     existingQuestions.forEach(block => block.remove());
-    
+
     // Générer les nouvelles questions
     for (let i = 0; i < nombreQuestions; i++) {
         const questionIndex = i;
         const questionBlock = document.createElement('div');
         questionBlock.className = 'question-block bg-gray-700 p-6 rounded-lg mb-6 border border-gray-600';
-        
+
         const oldQuestion = oldData[questionIndex] || {};
         const oldTexte = oldQuestion.texte || '';
         const oldCorrect = oldQuestion.correct || '';
         const oldReponses = oldQuestion.reponses || ['', '', '', ''];
-        
+
         questionBlock.innerHTML = `
             <h3 class="text-xl font-bold text-white mb-4">Question ${i + 1}</h3>
-            
+
             <!-- Question -->
             <div class="mb-4">
                 <label for="question_${questionIndex}" class="block text-sm font-medium text-gray-300 mb-2">Énoncé de la question</label>
@@ -115,7 +121,7 @@ function generateQuestions() {
                     class="w-full px-4 py-2 bg-gray-600 border border-gray-500 rounded-lg text-white focus:ring-kahoot-green focus:border-kahoot-green @error('questions.${questionIndex}.texte') border-red-500 @enderror"
                     placeholder="Saisissez votre question ici...">${oldTexte}</textarea>
             </div>
-            
+
             <!-- Réponses -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div class="space-y-3">
@@ -127,7 +133,7 @@ function generateQuestions() {
                             class="flex-1 px-3 py-2 bg-red-600 border border-red-500 rounded-lg text-white focus:ring-red-400 focus:border-red-400"
                             placeholder="Réponse A">
                     </div>
-                    
+
                     <div class="flex items-center gap-3">
                         <input type="radio" id="correct_${questionIndex}_1" name="questions[${questionIndex}][correct]" value="1" required
                             ${oldCorrect == '1' ? 'checked' : ''}
@@ -137,7 +143,7 @@ function generateQuestions() {
                             placeholder="Réponse B">
                     </div>
                 </div>
-                
+
                 <div class="space-y-3">
                     <div class="flex items-center gap-3">
                         <input type="radio" id="correct_${questionIndex}_2" name="questions[${questionIndex}][correct]" value="2" required
@@ -147,7 +153,7 @@ function generateQuestions() {
                             class="flex-1 px-3 py-2 bg-yellow-600 border border-yellow-500 rounded-lg text-white focus:ring-yellow-400 focus:border-yellow-400"
                             placeholder="Réponse C">
                     </div>
-                    
+
                     <div class="flex items-center gap-3">
                         <input type="radio" id="correct_${questionIndex}_3" name="questions[${questionIndex}][correct]" value="3" required
                             ${oldCorrect == '3' ? 'checked' : ''}
@@ -158,13 +164,13 @@ function generateQuestions() {
                     </div>
                 </div>
             </div>
-            
+
             <p class="text-sm text-gray-400">
                 <i class="fas fa-info-circle mr-2"></i>
                 Sélectionnez la bonne réponse en cochant le bouton radio correspondant
             </p>
         `;
-        
+
         container.appendChild(questionBlock);
     }
 }

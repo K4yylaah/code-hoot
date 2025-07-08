@@ -36,12 +36,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::post('/quiz/import', [QuizController::class, 'import'])->name('quiz.import');
+Route::get('/quiz/import', [QuizController::class, 'showImport'])->name('quiz.showImport');
+
 Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
 Route::get('/quiz/create', [QuizController::class, 'create'])->name('quiz.create');
 Route::post('/quiz', [QuizController::class, 'store'])->name('quiz.store');
 Route::get('/quiz/{quiz}', [QuizController::class, 'show'])->name('quiz.show');
 Route::get('/quiz/play/{quiz}', [QuizController::class, 'play'])->name('game');
-
 
 Route::get('/leaderboard', [LeaderboardController::class, 'index'])->name('leaderboard');
 

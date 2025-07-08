@@ -7,7 +7,9 @@
         </p>
         <div class="flex justify-center space-x-4">
             <a href="#" class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">COMMENCER</a>
-            <a href="#" class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">DECOUVRIR</a>
+            <a href="{{ route('quiz.showImport') }}"
+               class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">
+                IMPORTER</a>
         </div>
     </div>
 </section>

@@ -2,6 +2,19 @@
 
 <main class="flex flex-col items-center py-12 px-4 min-h-[calc(100vh-120px)] bg-gray-900">
     <div class="w-full max-w-4xl space-y-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold pixel-font text-yellow-300">LISTE DES QUIZ</h1>
+            <div class="flex space-x-4">
+                <a href="{{ route('quiz.create') }}"
+                   class="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">
+                    CRÉER
+                </a>
+                <a href="{{ route('quiz.showImport') }}"
+                   class="bg-transparent hover:bg-gray-700 border border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">
+                    IMPORTER
+                </a>
+            </div>
+        </div>
         @if(isset($quizzes) && $quizzes->count() > 0)
         @foreach($quizzes as $quiz)
         <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden border-2 border-gray-700">
