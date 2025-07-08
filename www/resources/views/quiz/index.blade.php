@@ -21,15 +21,22 @@
             <div class="p-8">
                 <div class="flex flex-col gap-8">
                     <div class="w-full space-y-6">
-                        <div>
-                            <h1 class="text-3xl font-bold mb-2 text-white lucky-font">
-                                Quiz {{ ucfirst($quiz->catégorie) }}
-                            </h1>
+                        <div class="bg-gray-800 rounded-xl shadow-xl overflow-hidden border-2 border-gray-700 p-8">
+                            <div class="flex justify-between items-center mb-6">
+                                <h1 class="text-3xl font-bold text-white lucky-font">
+                                    Quiz {{ ucfirst($quiz->catégorie) }}
+                                </h1>
+                                <a href="{{ route('quiz.export', ['quiz' => $quiz->id]) }}"
+                                   class="bg-transparent hover:bg-gray-700 border-2 border-yellow-500 text-yellow-500 hover:text-white font-bold py-3 px-6 rounded-lg pixel-font text-sm transition-colors">
+                                    EXPORTER
+                                </a>
+                            </div>
                             <p class="text-gray-300">
                                 Testez vos connaissances en {{ $quiz->catégorie }} avec ce quiz de
                                 {{ $quiz->nombre_de_questions }} questions.
                             </p>
                         </div>
+
                         <div class="flex flex-wrap gap-3">
                             <div class="bg-gray-700 px-4 py-2 rounded-full text-sm">
                                 <span class="text-gray-300 pixel-font">QUESTIONS :</span>

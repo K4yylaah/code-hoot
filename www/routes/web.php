@@ -39,6 +39,8 @@ Route::get('/dashboard', function () {
 Route::post('/quiz/import', [QuizController::class, 'import'])->name('quiz.import');
 Route::get('/quiz/import', [QuizController::class, 'showImport'])->name('quiz.showImport');
 
+Route::get('/quiz/{quiz}/export', [QuizController::class, 'export'])->name('quiz.export');
+
 Route::get('/quiz', [QuizController::class, 'index'])->name('quiz.index');
 Route::get('/quiz/create', [QuizController::class, 'create'])->name('quiz.create');
 Route::post('/quiz', [QuizController::class, 'store'])->name('quiz.store');

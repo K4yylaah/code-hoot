@@ -7,6 +7,7 @@ use App\Models\Quiz;
 use App\Models\Question;
 use App\Models\Reponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class QuizController extends Controller
 {
@@ -187,4 +188,52 @@ class QuizController extends Controller
         }
     }
 
+    public function export($id)
+    {
+        $quiz = Quiz::with(['questions.reponses'])->findOrFail($id);
+
+        $filename = 'quiz_' . $quiz->id . '_' . Str::slug($quiz->catégorie) . '.csv';
+
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'content-Disposition' => 'attachment; filename=' . $filename . '"',
+        ];
+
+        $callback = function() use ($quiz) {
+            $file = fopen('php://output', 'w');
+
+            // En-tête avec les informations du quiz
+            fputcsv($file, [
+                $quiz->nombre_de_questions,
+                $quiz->difficulté,
+                $quiz->catégorie,
+            ]);
+
+            // Questions ét réponses
+            foreach ($quiz->questions as $question) {
+                $reponses = $question->reponses->toArray();
+                $bonneReponseIndex = 0;
+
+                foreach ($reponses as $index => $reponse) {
+                    if ($reponse['est_correcte']) {
+                        $bonneReponseIndex = $index + 1;
+                        break;
+                    }
+                }
+
+                fputcsv($file, [
+                    $question->énoncé,
+                    $reponses[0]['contenu'],
+                    $reponses[1]['contenu'],
+                    $reponses[2]['contenu'],
+                    $reponses[3]['contenu'],
+                    $bonneReponseIndex,
+                ]);
+            }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }
