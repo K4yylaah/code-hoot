@@ -196,7 +196,7 @@ class QuizController extends Controller
 
         $headers = [
             'Content-Type' => 'text/csv',
-            'content-Disposition' => 'attachment; filename=' . $filename . '"',
+            'content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
 
         $callback = function() use ($quiz) {
